@@ -1,6 +1,7 @@
 package com.jgxi.api.controller;
 
 import com.jgxi.api.entity.po.Band;
+import com.jgxi.api.entity.vo.PageParams;
 import com.jgxi.api.entity.vo.ReponseData;
 import com.jgxi.api.service.BandService;
 import com.jgxi.api.utils.OssFileUtils_JGXI;
@@ -34,6 +35,12 @@ public class BandController {
     public ReponseData add(Band band){
         bandService.add(band);
         return ReponseData.success("");
+    }
+
+    @PostMapping("queryPageData")
+    public ReponseData queryPageData(PageParams pageParams){
+        //判断 必选项
+        return  ReponseData.success(bandService.queryAllData(pageParams));
     }
 
 }
