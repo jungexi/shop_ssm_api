@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jgxi.api.dao.AttrDao">
+    <select id="queryData" parameterType="com.jgxi.api.entity.vo.AttrParams" resultType="com.jgxi.api.entity.vo.AttrShow">
+        SELECT att.id,att.nameCH as name,t.`name` as typeName,att.isSKU,att.type
+         from shop_product_attr att LEFT JOIN shop_product_type t on att.typeId=t.id
+         where 3=3
+         <if test="name!=null and name!=''">
+             and att.nameCH like concat('%',#{name},'%')
+         </if>
+        <if test="type!=null">
+             and att.type =#{type}
+         </if>
+        <if test="isSKU!=null">
+             and att.isSKU=#{isSKU}
+         </if>
+
+        limit ${(page - 1) * size},#{size}
+    </select>
+
+    <select id="queryDataCount" parameterType="com.jgxi.api.entity.vo.AttrParams" resultType="java.lang.Long">
+        SELECT count(1)
+         from shop_product_attr att LEFT JOIN shop_product_type t on att.typeId=t.id
+         where 3=3
+        <if test="name!=null and name!=''">
+            and att.nameCH like concat('%',#{name},'%')
+        </if>
+        <if test="type!=null">
+            and att.type =#{type}
+        </if>
+        <if test="isSKU!=null">
+            and att.isSKU=#{isSKU}
+        </if>
+    </select>
+</mapper>
