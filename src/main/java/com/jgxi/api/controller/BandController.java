@@ -1,10 +1,12 @@
 package com.jgxi.api.controller;
 
+import com.jgxi.api.entity.po.Band;
 import com.jgxi.api.entity.vo.ReponseData;
 import com.jgxi.api.service.BandService;
 import com.jgxi.api.utils.OssFileUtils_JGXI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,6 +29,11 @@ public class BandController {
         //存储路径
         newName="imgs/"+newName;
         return ReponseData.success(OssFileUtils_JGXI.uploadFile(file.getInputStream(),newName));
+    }
+    @PostMapping("add")
+    public ReponseData add(Band band){
+        bandService.add(band);
+        return ReponseData.success("");
     }
 
 }
