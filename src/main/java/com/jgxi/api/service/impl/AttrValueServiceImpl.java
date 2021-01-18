@@ -7,6 +7,7 @@ import com.jgxi.api.service.AttrValueService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class AttrValueServiceImpl implements AttrValueService {
@@ -15,5 +16,10 @@ public class AttrValueServiceImpl implements AttrValueService {
     @Override
     public void add(AttrValue av) {
         attrValueDao.add(av);
+    }
+
+    @Override
+    public List<AttrValue> queryDataByAid(Integer aid) {
+        return attrValueDao.queryAllDataByAid(aid);
     }
 }
