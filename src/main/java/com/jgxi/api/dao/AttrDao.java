@@ -5,6 +5,7 @@ import com.jgxi.api.entity.vo.AttrParams;
 import com.jgxi.api.entity.vo.AttrShow;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -16,5 +17,7 @@ public interface AttrDao {
     /* 动态sql  建议在 xml */
     public List<AttrShow> queryData(AttrParams params);
     public Long queryDataCount(AttrParams params);
+    @Select("select * from shop_product_attr where typeId=#{tid} and isDel=0")
+    public List<Attr> queryDataByTypeId(Integer tid);
 
 }

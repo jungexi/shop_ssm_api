@@ -38,4 +38,9 @@ public class AttrServiceImpl implements AttrService {
         rs.put("count",aLong);
         return rs;
     }
+
+    @Override
+    public List<Attr> queryDataByTypeId(Integer tid) {
+        return attrDao.queryDataByTypeId(tid);
+    }
 }
